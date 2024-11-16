@@ -10,4 +10,16 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="hint_security_question">Security Question</string>
+    <string name="hint_dob">Date of Birth (Optional)</string>
+    <string name="btn_submit">Submit</string>
+
 </resources>
