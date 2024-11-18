@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etPlanTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Plan Title"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etPlanDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Duration"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etPlanSets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of sets"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etPlanDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter plan description"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:gravity="top|start"/>
+
+    <Button
+        android:id="@+id/btnSavePlan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Workout Plan"/>
+
+</LinearLayout>

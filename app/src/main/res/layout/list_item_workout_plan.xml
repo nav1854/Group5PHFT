@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/border"
+    android:layout_gravity="center">
+
+    <!-- Title -->
+<TextView
+android:id="@+id/tvPlanTitle"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Workout Plan Title"
+android:textSize="18sp"
+android:textStyle="bold"
+android:paddingBottom="8dp" />
+
+    <!-- Duration -->
+<TextView
+android:id="@+id/tvPlanDuration"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Duration: 30 mins"
+android:paddingBottom="8dp"/>
+
+    <!-- Sets -->
+<TextView
+android:id="@+id/tvPlanSets"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Sets: 3"
+android:paddingBottom="8dp"/>
+
+    <!-- Description -->
+<TextView
+android:id="@+id/tvPlanDescription"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Plan Description"
+android:paddingBottom="8dp"/>
+
+    <!-- Delete Button -->
+<Button
+android:id="@+id/btnDeletePlan"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Delete Plan"
+android:layout_marginTop="8dp" />
+    </LinearLayout>

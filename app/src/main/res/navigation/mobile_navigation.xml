@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
-
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.group5phft.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.group5phft.ui.gallery.GalleryFragment"
@@ -18,8 +16,23 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.group5phft.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_social"
+        android:name="com.example.group5phft.ui.SocialSharing.SocialSharingFragment"
+        android:label="@string/menu_social"
+        tools:layout="@layout/activity_social_sharing" />
+
+    <fragment
+        android:id="@+id/nav_subscriptions"
+        android:name="com.example.group5phft.ui.subscription.SubscriptionFragment"
+        android:label="@string/menu_subscription"
+        tools:layout="@layout/fragment_subscriptions" />
+
+    <fragment
+        android:id="@+id/nav_workout_plans"
+        android:name="com.example.group5phft.ui.workoutplan.WorkoutPlansFragment"
+        android:label="@string/menu_Workout_Plans"
+        tools:layout="@layout/fragment_workout_plans" />
+
+
+
 </navigation>

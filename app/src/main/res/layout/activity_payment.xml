@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Display the current plan -->
+    <TextView
+        android:id="@+id/text_current_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Plan: None"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Card Number Input -->
+    <EditText
+        android:id="@+id/input_card_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Card Number"
+        android:inputType="number"
+        android:maxLength="16"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Expiration Date Input -->
+    <EditText
+        android:id="@+id/input_expiration_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Expiration Date (MMYY)"
+        android:inputType="number"
+        android:maxLength="4"
+        android:layout_marginBottom="16dp" />
+
+    <!-- CVV Input -->
+    <EditText
+        android:id="@+id/input_cvv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CVV"
+        android:inputType="number"
+        android:maxLength="3"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Save Subscription Button -->
+    <Button
+        android:id="@+id/btn_save_subscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Subscription"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

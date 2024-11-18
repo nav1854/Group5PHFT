@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+android:orientation="vertical"
+    android:padding="16dp">
+    <TextView
+        android:id="@+id/thank_you"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank You!"
+        android:textSize="100sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/subscription_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checking subscription..."
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+    <TextView
+        android:id="@+id/subscription_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Your Subscription"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal" />
+
+    <RadioGroup
+        android:id="@+id/subscription_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/btn_monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monthly - $10" />
+
+        <RadioButton
+            android:id="@+id/btn_three_months"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 Months - $25" />
+
+        <RadioButton
+            android:id="@+id/btn_yearly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yearly - $60" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/text_current_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Plan: None"
+        android:layout_marginBottom="16dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_continue_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue to Payment"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
