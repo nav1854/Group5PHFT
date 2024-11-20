@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".GoalSettingActivity">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/goalTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Your Goals"
+        android:textSize="20sp"
+        android:contentDescription="Set your goals title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp" />
+
+    <!-- Miles Ran -->
+    <TextView
+        android:id="@+id/milesRanLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Miles Ran"
+        android:textSize="16sp"
+        android:contentDescription="Label for miles ran input"
+        app:layout_constraintTop_toBottomOf="@id/goalTitle"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/milesRanInput"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="Enter miles ran"
+        android:inputType="numberDecimal"
+        android:autofillHints="milesRan"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@id/milesRanLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Steps Taken -->
+    <TextView
+        android:id="@+id/stepsTakenLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Steps Taken"
+        android:textSize="16sp"
+        android:contentDescription="Label for steps taken input"
+        app:layout_constraintTop_toBottomOf="@id/milesRanInput"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/stepsTakenInput"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="Enter steps taken"
+        android:inputType="number"
+        android:autofillHints="stepsTaken"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@id/stepsTakenLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Calories Burned -->
+    <TextView
+        android:id="@+id/caloriesBurnedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories Burned"
+        android:textSize="16sp"
+        android:contentDescription="Label for calories burned input"
+        app:layout_constraintTop_toBottomOf="@id/stepsTakenInput"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/caloriesBurnedInput"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="Enter calories burned"
+        android:inputType="number"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@id/caloriesBurnedLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Exercise Goal -->
+    <TextView
+        android:id="@+id/exerciseGoalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exercise Goal"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/caloriesBurnedInput"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/exerciseGoalInput"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="Enter exercise goal"
+        android:inputType="text"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@id/exerciseGoalLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Weight Lifting Goal -->
+    <TextView
+        android:id="@+id/weightLiftingGoalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight Lifting Goal"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/exerciseGoalInput"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/weightLiftingGoalInput"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="Enter weight lifting goal"
+        android:inputType="text"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@id/weightLiftingGoalLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Weight Goal -->
+    <TextView
+        android:id="@+id/weightGoalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight Goal"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/weightLiftingGoalInput"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/weightGoalInput"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="Enter weight goal"
+        android:inputType="numberDecimal"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@id/weightGoalLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveGoalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Goal"
+        app:layout_constraintTop_toBottomOf="@id/weightGoalInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- View Progress Button -->
+    <Button
+        android:id="@+id/viewProgressButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Progress"
+        app:layout_constraintTop_toBottomOf="@id/saveGoalButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

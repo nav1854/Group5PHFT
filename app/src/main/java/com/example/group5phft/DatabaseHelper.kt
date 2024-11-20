@@ -10,7 +10,7 @@ class DatabaseHelper(context: Context) :
 
     companion object {
         const val DATABASE_NAME = "UserDatabase.db"
-        const val DATABASE_VERSION = 2
+        const val DATABASE_VERSION = 4
 
         // User table and columns
         const val TABLE_USERS = "users"
@@ -19,7 +19,6 @@ class DatabaseHelper(context: Context) :
         const val COLUMN_PASSWORD = "password"
         const val COLUMN_FIRST_NAME = "first_name"
         const val COLUMN_LAST_NAME = "last_name"
-        const val COLUMN_SECURITY_QUESTION = "security_question"
         const val COLUMN_DOB = "dob"
         const val COLUMN_SUBSCRIPTION = "subscription_plan"
 
@@ -41,7 +40,6 @@ class DatabaseHelper(context: Context) :
                 $COLUMN_PASSWORD TEXT,
                 $COLUMN_FIRST_NAME TEXT,
                 $COLUMN_LAST_NAME TEXT,
-                $COLUMN_SECURITY_QUESTION TEXT,
                 $COLUMN_DOB TEXT,
                 $COLUMN_SUBSCRIPTION TEXT DEFAULT NULL
             )
@@ -69,14 +67,13 @@ class DatabaseHelper(context: Context) :
     }
 
     // Insert user into the users table
-    fun insertUser(email: String, password: String, firstName: String, lastName: String, securityQuestion: String, dob: String?): Boolean {
+    fun insertUser(email: String, password: String, firstName: String, lastName: String, dob: String?): Boolean {
         val db = writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_EMAIL, email)
             put(COLUMN_PASSWORD, password)
             put(COLUMN_FIRST_NAME, firstName)
             put(COLUMN_LAST_NAME, lastName)
-            put(COLUMN_SECURITY_QUESTION, securityQuestion)
             put(COLUMN_DOB, dob)
         }
         return db.insert(TABLE_USERS, null, values) != -1L
@@ -102,6 +99,7 @@ class DatabaseHelper(context: Context) :
     }
 
     // Get user subscription
+    //change
     fun getUserSubscription(userEmail: String?): String? {
         if (userEmail.isNullOrEmpty()) return null
         val db = readableDatabase
@@ -117,6 +115,7 @@ class DatabaseHelper(context: Context) :
     }
 
     // Insert workout plan into the workout plans table
+    //look into
     fun insertWorkoutPlan(title: String, duration: String?, sets: Int?, description: String?): Boolean {
         if (title.isBlank()) return false // Title is mandatory
         val db = writableDatabase
@@ -130,6 +129,7 @@ class DatabaseHelper(context: Context) :
     }
 
     // Retrieve all workout plans
+    //look into
     fun getAllWorkoutPlans(): List<Map<String, Any>> {
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_WORKOUT_PLANS"

@@ -9,21 +9,20 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
             android:id="@+id/nav_workout_plans"
+            android:icon="@drawable/baseline_monitor_weight_24"
             android:title="@string/menu_Workout_Plans" />
         <item
             android:id="@+id/nav_subscriptions"
+            android:icon="@drawable/baseline_add_circle_outline_24"
             android:title="@string/menu_subscription" />
         <item
             android:id="@+id/nav_social"
+            android:icon="@drawable/baseline_add_reaction_24"
             android:title="@string/menu_social" />
+        <item
+            android:id="@+id/nav_trainer"
+            android:icon="@drawable/baseline_accessibility_new_24"
+            android:title="@string/menu_trainer" />
     </group>
 </menu>

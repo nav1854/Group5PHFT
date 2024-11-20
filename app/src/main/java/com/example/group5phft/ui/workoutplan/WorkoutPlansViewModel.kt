@@ -8,14 +8,17 @@ import com.example.group5phft.DatabaseHelper
 
 class WorkoutPlansViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _workoutPlans = MutableLiveData<List<Map<String, Any>>>()
-    val workoutPlans: LiveData<List<Map<String, Any>>> get() = _workoutPlans
+    private val databaseHelper = DatabaseHelper(application)
+    private val workoutPlans = MutableLiveData<List<Map<String, Any>>>()
 
-    private val dbHelper = DatabaseHelper(application)
-
-    // Fetch workout plans and update LiveData
     fun fetchWorkoutPlans(): LiveData<List<Map<String, Any>>> {
-        _workoutPlans.value = dbHelper.getAllWorkoutPlans() // Get data from DB
+        workoutPlans.value = databaseHelper.getAllWorkoutPlans()
         return workoutPlans
+    }
+
+    fun deleteWorkoutPlan(plan: Map<String, Any>) {
+        val id = plan[DatabaseHelper.COLUMN_PLAN_ID] as Int
+        databaseHelper.deleteWorkoutPlan(id)
+        fetchWorkoutPlans()  // Refresh list after deletion
     }
 }

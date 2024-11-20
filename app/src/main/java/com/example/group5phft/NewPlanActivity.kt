@@ -1,7 +1,7 @@
 package com.example.group5phft
 
+import android.app.Activity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -37,7 +37,8 @@ class NewPlanActivity : AppCompatActivity() {
                 val success = dbHelper.insertWorkoutPlan(title, duration, sets, description)
                 if (success) {
                     Toast.makeText(this, "Workout Plan Saved", Toast.LENGTH_SHORT).show()
-                    finish() // Close the activity and return to the previous screen
+                    setResult(Activity.RESULT_OK)  // Set result as OK
+                    finish()  // Close the activity and return to the previous screen
                 } else {
                     Toast.makeText(this, "Failed to Save Plan", Toast.LENGTH_SHORT).show()
                 }

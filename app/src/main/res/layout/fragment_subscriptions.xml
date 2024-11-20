@@ -26,7 +26,7 @@ android:orientation="vertical"
         android:id="@+id/subscription_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Your Subscription"
+        android:text="Subscription Options"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -71,5 +71,6 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Continue to Payment"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:enabled="false" />
 </LinearLayout>

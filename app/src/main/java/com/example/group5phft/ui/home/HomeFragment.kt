@@ -1,42 +1,39 @@
 package com.example.group5phft.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.group5phft.databinding.FragmentHomeBinding
+import com.example.group5phft.ActivityCategoriesActivity
+import com.example.group5phft.GoalSettingActivity
+import com.example.group5phft.R
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Button for Activity Categories
+        val btnActivityCategories = view.findViewById<Button>(R.id.btnActivityCategories)
+        btnActivityCategories.setOnClickListener {
+            val intent = Intent(activity, ActivityCategoriesActivity::class.java)
+            startActivity(intent)
         }
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        // Button for Goal Setting
+        val btnGoalSetting = view.findViewById<Button>(R.id.btnGoalSetting)
+        btnGoalSetting.setOnClickListener {
+            val intent = Intent(activity, GoalSettingActivity::class.java)
+            startActivity(intent)
+        }
+
+        return view
     }
 }

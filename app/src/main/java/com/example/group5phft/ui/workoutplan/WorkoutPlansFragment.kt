@@ -1,25 +1,30 @@
 package com.example.group5phft.ui.workoutplan
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.group5phft.databinding.FragmentWorkoutPlansBinding
-import android.content.Intent
-import com.example.group5phft.NewPlanActivity
-import com.example.group5phft.DatabaseHelper
 import androidx.lifecycle.ViewModelProvider
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.group5phft.DatabaseHelper
+import com.example.group5phft.NewPlanActivity
+import com.example.group5phft.databinding.FragmentWorkoutPlansBinding
+import com.example.group5phft.ui.workoutplan.WorkoutPlansAdapter
 
 class WorkoutPlansFragment : Fragment() {
 
     private lateinit var binding: FragmentWorkoutPlansBinding
     private lateinit var workoutPlansViewModel: WorkoutPlansViewModel
     private lateinit var adapter: WorkoutPlansAdapter
+
+    companion object {
+        private const val REQUEST_CODE_NEW_PLAN = 1001
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +53,7 @@ class WorkoutPlansFragment : Fragment() {
         // Button to create a new plan
         binding.btnCreateNewPlan.setOnClickListener {
             val intent = Intent(activity, NewPlanActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, REQUEST_CODE_NEW_PLAN)
         }
 
         return binding.root
@@ -71,6 +76,18 @@ class WorkoutPlansFragment : Fragment() {
             })
         } else {
             Toast.makeText(context, "Failed to delete plan", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Handle result from NewPlanActivity
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_NEW_PLAN && resultCode == Activity.RESULT_OK) {
+            // Fetch the updated list of workout plans from the database
+            workoutPlansViewModel.fetchWorkoutPlans().observe(viewLifecycleOwner, Observer { plans ->
+                // Submit the new list of plans to the adapter
+                adapter.submitList(plans)
+            })
         }
     }
 }

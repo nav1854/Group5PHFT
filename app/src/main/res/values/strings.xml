@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Nicolas Ventura</string>
-    <string name="nav_header_subtitle">nav1854@mav.uta.edu.com</string>
+    <string name="nav_header_subtitle">nv1854@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -13,6 +13,15 @@
     <string name="menu_Workout_Plans">Workout Plans</string>
     <string name="menu_subscription">Subscription</string>
     <string name="menu_social">Social</string>
+    <string name="menu_trainer">Trainer</string>
+
+    <string name="password_requirements">
+    Password must include:\n
+    • At least 8 characters\n
+    • At least 1 uppercase letter\n
+    • At least 1 number\n
+    • At least 1 special character (e.g., @, $, %, etc.)
+</string>
 
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
@@ -44,5 +53,33 @@
     <string name="toast_subscription_saved">Subscription Saved!</string>
     <string name="toast_failed_to_save_subscription">Failed to save subscription.</string>
     <string name="toast_invalid_user_email">User email is not available. Please log in again.</string>
+
+    <!-- Goal Setting -->
+    <string name="goal_title">Set Your Fitness Goal</string>
+    <string name="goal_description_hint">Enter your goal (e.g., Run 5 miles/week)</string>
+    <string name="save_goal">Save Goal</string>
+
+    <!-- Progress Monitoring -->
+    <string name="progress_title">Your Progress</string>
+    <string name="miles_ran">Miles Ran: %1$.1f</string>
+    <string name="steps_taken">Steps Taken: %1$d</string>
+    <string name="calories_burned">Calories Burned: %1$d</string>
+    <string name="exercise_goal">Exercise Goal: %1$s</string>
+    <string name="weight_lifting_goal">Weight Lifting Goal: %1$s</string>
+    <string name="weight_goal">Weight Goal: %1$.1f</string>
+
+    <!-- Activity Types for Progress Monitoring -->
+    <string-array name="activity_types">
+        <item>Running</item>
+        <item>Walking</item>
+        <item>Cycling</item>
+        <item>Yoga</item>
+        <item>HIIT</item>
+        <item>Weightlifting</item>
+    </string-array>
+    <!-- Back Button Text -->
+    <string name="back_button_text">Back</string>
+
+
 
 </resources>
