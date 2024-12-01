@@ -29,6 +29,14 @@ class DatabaseHelper(context: Context) :
         const val COLUMN_PLAN_DURATION = "plan_duration"
         const val COLUMN_PLAN_SETS = "plan_sets"
         const val COLUMN_PLAN_DESCRIPTION = "plan_description"
+
+        const val TABLE_TRACKING = "activity"
+        const val SESSION_ID = "id"
+        const val COLUMN_TIME = "time"
+        const val COLUMN_CALORIES = "calories"
+        const val COLUMN_DISTANCE = "distance"
+        const val COLUMN_STEPS = "steps"
+        const val COLUMN_HEART_RATE = "heart_rate"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -56,13 +64,26 @@ class DatabaseHelper(context: Context) :
             )
         """.trimIndent()
 
+        val trackingTable = """
+            CREATE TABLE $TABLE_TRACKING (
+                $SESSION_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_TIME TEXT,
+                $COLUMN_DISTANCE TEXT,
+                $COLUMN_STEPS TEXT,
+                $COLUMN_CALORIES TEXT,
+                $COLUMN_HEART_RATE TEXT
+            )
+        """.trimIndent()
+
         db.execSQL(createUsersTable)
         db.execSQL(createWorkoutPlansTable)
+        db.execSQL(trackingTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_WORKOUT_PLANS")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_TRACKING")
         onCreate(db)
     }
 
@@ -160,5 +181,38 @@ class DatabaseHelper(context: Context) :
         db.close()
 
         return rowsDeleted > 0  // Return true if at least one row was deleted
+    }
+
+    fun insertActivity(time: String, distance: String?, steps: String?, calories: String, heartRate: String?) : Boolean {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_TIME, time)
+            put(COLUMN_DISTANCE, distance ?: "N/A")
+            put(COLUMN_STEPS, steps ?: "N/A")
+            put(COLUMN_CALORIES, calories ?: "0")
+            put(COLUMN_HEART_RATE, heartRate ?: "N/A")
+        }
+        return db.insert(TABLE_TRACKING, null, values) != -1L
+    }
+
+    fun getAllActivities(): List<Map<String, Any>> {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_TRACKING"
+        val cursor = db.rawQuery(query, null)
+
+        val allActivity = mutableListOf<Map<String, Any>>()
+        while (cursor.moveToNext()) {
+            val record = mapOf(
+                SESSION_ID to cursor.getInt(cursor.getColumnIndexOrThrow(SESSION_ID)),
+                COLUMN_TIME to cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME)),
+                COLUMN_CALORIES to cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CALORIES)),
+                COLUMN_DISTANCE to cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DISTANCE)),
+                COLUMN_STEPS to cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STEPS)),
+                COLUMN_STEPS to cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STEPS))
+            )
+            allActivity.add(record)
+        }
+        cursor.close()
+        return allActivity
     }
 }

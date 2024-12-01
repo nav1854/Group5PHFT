@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 
 class ActivityCategoriesActivity : AppCompatActivity() {
@@ -19,6 +20,18 @@ class ActivityCategoriesActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, activityList)
         categoriesListView.adapter = adapter
+
+        categoriesListView.setOnItemClickListener { adapter, view, i, l ->
+            var intent = Intent()
+            intent = if (i == 0 || i == 1) {
+                Intent(this, TrackingActivity::class.java)
+            } else if (i == 2) {
+                Intent(this, TrackingDistance::class.java)
+            } else {
+                Intent(this, TrackingCalories::class.java)
+            }
+            startActivity(intent)
+        }
 
         addActivityButton.setOnClickListener {
             // Example addition of new activity

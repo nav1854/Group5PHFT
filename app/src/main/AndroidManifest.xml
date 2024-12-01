@@ -53,6 +53,15 @@
             android:name=".NewPlanActivity"
             android:exported="true" >
         </activity>
+        <activity
+            android:name=".TrackingActivity"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".TrackingCalories"
+            android:exported="true" >
+        </activity>
+
 
         <activity
             android:name=".MainActivity"
