@@ -1,12 +1,7 @@
 package com.example.group5phft
 
-import android.Manifest
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,20 +11,13 @@ import android.widget.Chronometer
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import java.util.Locale
 import kotlin.math.absoluteValue
 
-class TrackingDistance(context: Context) : AppCompatActivity() {
+class TrackingDistance : AppCompatActivity() {
     // Distance is recorded by location, without taking steps into account
-    // If anyone saw this before any kind of update, this isn't done.
 
     private lateinit var dbHelper : DatabaseHelper
-
-    private val locationManager: LocationManager =
-        context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-    private val locationListener: LocationListener? = null
-    private var previousLocation: Location? = null
 
     private var calories = 0
     private var distanceKm = 0f
@@ -41,6 +29,8 @@ class TrackingDistance(context: Context) : AppCompatActivity() {
     // True = Miles, False = Kilometers
     private var mode = true
 
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tracker)
@@ -52,11 +42,10 @@ class TrackingDistance(context: Context) : AppCompatActivity() {
         val endBtn = findViewById<Button>(R.id.endButton)
         val distanceVal = findViewById<TextView>(R.id.distanceVal)
         val metric = findViewById<TextView>(R.id.metric)
-        var steps = findViewById<TextView>(R.id.stepVal)
+        val steps = findViewById<TextView>(R.id.stepVal)
 
         steps.text = "-"
         var totalTime = 0L
-
 
         startBtn.setOnClickListener {
             if (!started) {
@@ -76,11 +65,11 @@ class TrackingDistance(context: Context) : AppCompatActivity() {
             if (mode) {
                 mode = false
                 metric.text = "Km"
-                distanceVal.text = "$distanceKm"
+                distanceVal.text = String.format(Locale.getDefault(), "%.2f", distanceKm)
             } else {
                 mode = true
                 metric.text = "Mi"
-                distanceVal.text = "$distanceMi"
+                distanceVal.text = String.format(Locale.getDefault(), "%.2f", distanceMi)
             }
         }
 
@@ -88,8 +77,11 @@ class TrackingDistance(context: Context) : AppCompatActivity() {
             totalTime = chrono.base - SystemClock.elapsedRealtime()
             chrono.stop()
             val finalStr = getFinalTime(totalTime.absoluteValue)
+            val fCalories = calories.toString()
+            val fDistance = if (mode) String.format(Locale.getDefault(), "%.2f Mi", distanceMi)
+            else String.format(Locale.getDefault(), "%.2f Km", distanceKm)
 
-            val success = dbHelper.insertActivity(finalStr, distanceMi.toString(), steps.toString(), calories.toString(), heartRate.toString())
+            val success = dbHelper.insertActivity(finalStr, fDistance, "N/A", fCalories, heartRate.toString())
             if (success) {
                 Toast.makeText(this, "Activity complete!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
@@ -101,6 +93,16 @@ class TrackingDistance(context: Context) : AppCompatActivity() {
             }
         }
         runTimer()
+    }
+
+    fun getDistanceKm(seconds: Int) {
+        // Get the distance in Kilometers
+        distanceKm = ( seconds.toFloat() / 3600f ) * 20.84f
+    }
+
+    fun getDistanceMi(seconds: Int) {
+        // Get the distance in Miles
+        distanceMi = ( seconds.toFloat() / 3600f ) * 12.95f
     }
 
     private fun getFinalTime(totalTime : Long) : String {
@@ -123,7 +125,7 @@ class TrackingDistance(context: Context) : AppCompatActivity() {
 
 
     fun updateCalories() : String {
-        calories = seconds / 9
+        calories = seconds / 6
         return calories.toString()
     }
 
@@ -137,12 +139,15 @@ class TrackingDistance(context: Context) : AppCompatActivity() {
                 if (started) {
                     seconds++
                     calorieVal.text = updateCalories()
+                    getDistanceKm(seconds)
+                    getDistanceMi(seconds)
 
-                    if (mode) distanceVal.text = "$distanceMi"
-                    else distanceVal.text = "$distanceKm"
+                    if (mode) distanceVal.text = String.format(Locale.getDefault(), "%.2f", distanceMi)
+                    else distanceVal.text = String.format(Locale.getDefault(),"%.2f", distanceKm)
                 }
                 handler.postDelayed(this, 1000)
             }
         })
     }
+
 }

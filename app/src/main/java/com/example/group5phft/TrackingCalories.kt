@@ -61,9 +61,9 @@ class TrackingCalories : AppCompatActivity() {
             totalTime = chrono.base - SystemClock.elapsedRealtime()
             chrono.stop()
             val finalStr = getFinalTime(totalTime.absoluteValue)
-            val fCalories = calories
+            val fCalories = calories.toString()
 
-            val success = dbHelper.insertActivity(finalStr, " ", " ", fCalories.toString(), " ")
+            val success = dbHelper.insertActivity(finalStr, " ", " ", fCalories, " ")
             if (success) {
                 Toast.makeText(this, "Activity complete!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)

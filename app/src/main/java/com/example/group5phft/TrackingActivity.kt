@@ -16,6 +16,7 @@ import android.hardware.SensorManager
 import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
+import java.util.Locale
 import kotlin.math.absoluteValue
 
 class TrackingActivity : AppCompatActivity(), SensorEventListener {
@@ -70,11 +71,11 @@ class TrackingActivity : AppCompatActivity(), SensorEventListener {
             if (mode) {
                 mode = false
                 metric.text = "Km"
-                distanceVal.text = "$distanceKm"
+                distanceVal.text = String.format(Locale.getDefault(), "%.2f", distanceKm)
             } else {
                 mode = true
                 metric.text = "Mi"
-                distanceVal.text = "$distanceMi"
+                distanceVal.text = String.format(Locale.getDefault(), "%.2f", distanceMi)
             }
         }
 
@@ -82,8 +83,12 @@ class TrackingActivity : AppCompatActivity(), SensorEventListener {
             totalTime = chrono.base - SystemClock.elapsedRealtime()
             chrono.stop()
             val finalStr = getFinalTime(totalTime.absoluteValue)
+            val fCalories = calories.toString()
+            val fDistance = if (mode) String.format(Locale.getDefault(), "%.2f Mi", distanceMi)
+            else String.format(Locale.getDefault(), "%.2f Km", distanceKm)
+            val fSteps = steps.toString()
 
-            val success = dbHelper.insertActivity(finalStr, distanceMi.toString(), steps.toString(), calories.toString(), heartRate.toString())
+            val success = dbHelper.insertActivity(finalStr, fDistance, fSteps, fCalories, heartRate.toString())
             if (success) {
                 Toast.makeText(this, "Activity complete!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
@@ -166,8 +171,8 @@ class TrackingActivity : AppCompatActivity(), SensorEventListener {
                     getDistanceMi(steps.toLong())
                     step.text = "$steps"
 
-                    if (mode) distanceVal.text = "$distanceMi"
-                    else distanceVal.text = "$distanceKm"
+                    if (mode) distanceVal.text = String.format(Locale.getDefault(), "%.2f", distanceMi)
+                    else distanceVal.text = String.format(Locale.getDefault(),"%.2f", distanceKm)
                 }
                 handler.postDelayed(this, 1000)
             }
